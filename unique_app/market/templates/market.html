@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Market | Page
+{% endblock %}
+
+{% block content %}
+    <h1 class="store_items"><span class="app_name">UNIQUE</span> Items</h1>
+
+    <main>
+        <div class="cards">
+            {% for item in items %}
+                <div class="card">
+                    <div class="image_container"><img src="{{ item.image }}" alt="item_image"></div>
+                    <p class="item_name">{{ item.name }}</p>
+                    <p><a href="#">details...</a></p>
+                    <div class="crad_control">
+                        <span class="item_price">{{ item.price }}$</span>
+                        <button class="buy">Buy</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="inventory">
+            <h3>My Items</h3>
+        </div>
+    </main>
+{% endblock %}

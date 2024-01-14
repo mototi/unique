@@ -1,0 +1,107 @@
+main{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.store_items{
+    margin-left: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #ffffff;
+    width: 34.35em;
+}
+
+.app_name:hover{
+    color: #16a931;
+    cursor: pointer;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-grow: 1;
+    gap: 10px;
+    height: fit-content;
+}
+
+.card{
+    background-color: #272727;
+    padding: 20px;
+    box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
+
+.inventory{
+    background-color: #272727;
+    padding: 20px;
+    min-height: 10em;
+    max-height: 30em; 
+    width: 20em;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.278);
+}
+
+.card img{
+    width: 20em;
+    height: 15em;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+}
+
+.card a {
+    text-decoration: none;
+    color: #16a931;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.image_container{
+    overflow: hidden;
+}
+
+.card:hover img {
+    transform: rotate(3deg) scale(1.08);
+    transition: transform 0.7s ease-in-out;
+}
+
+.card:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.278);
+}
+
+.crad_control{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crad_control span{
+    color: red;
+}
+
+.crad_control button{
+    outline: none;
+    border: none;
+    background-color: #16a931;
+    color: #272727;
+    box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.18);
+    padding: 5px 20px;
+    border-radius: 1em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.crad_control button:hover{
+    background-color: #272727;
+    color: #16a931;
+    box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.278);
+}
+
+.inventory h3{
+    text-align: center;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 1em;
+}
