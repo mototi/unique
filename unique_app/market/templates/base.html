@@ -11,6 +11,7 @@
     <link rel='stylesheet' href='../static/home.css'>
     <link rel='stylesheet' href='../static/market.css'>
     <link rel='stylesheet' href='../static/form.css'>
+    <script src="https://kit.fontawesome.com/5fb0cda24d.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header_container">
@@ -18,13 +19,26 @@
             <div class="nav_routes">
                 <p id="logo"><a href={{ url_for('home_page') }}>UNIQUE</a></p>
                 <ul class="routes_list">
+                    {% if current_user.is_authenticated %}
                     <li><a href={{ url_for('market_page') }}>Market</a></li>
+                    {% endif %}
                 </ul>
             </div>
-            <ul class="auth_routes">
-                <li><a href={{ url_for('login_page') }}>Login</a></li>
-                <li><a href={{ url_for('register_page') }}>Register</a></li>
-            </ul>
+            {% if current_user.is_authenticated %}
+                <ul class="auth_routes">
+                    <span class="budj">
+                        <i class="fa-solid fa-coins"></i>
+                        <a href="#">{{ current_user.budget }}$</a>
+                    </span>
+                    <li><span>Welcome, <a href="#">{{ current_user.username }}</a></span></li>
+                    <li><a href={{ url_for('logout_page') }}>Log out</a></li>
+                </ul>
+            {% else %}
+                <ul class="auth_routes">
+                    <li><a href={{ url_for('login_page') }}>Login</a></li>
+                    <li><a href={{ url_for('register_page') }}>Register</a></li>
+                </ul>
+            {% endif %}
         </nav>
     </header>
     
