@@ -10,6 +10,7 @@ app.config['SECRET_KEY'] = '39960418812650df760f359a'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login_page'
 
 if __name__ == '__main__':
     db.create_all()

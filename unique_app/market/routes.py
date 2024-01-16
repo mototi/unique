@@ -1,10 +1,9 @@
-from curses import flash
 from flask import request
 from market import app , db 
 from flask import render_template , redirect , url_for 
 from market.models import Item , User
 from market.forms import RegisterForm , LoginForm
-from flask_login import login_user , logout_user 
+from flask_login import login_user , logout_user , login_required 
 
 
 
@@ -15,6 +14,7 @@ def home_page():
     return render_template('home.html')
 
 @app.route('/market')
+@login_required
 def market_page():
     items =  Item.query.all()
     return render_template('market.html' , items=items)
@@ -31,6 +31,7 @@ def register_page():
                                   password=form.password1.data)
             db.session.add(user_to_create)
             db.session.commit()
+            login_user(user_to_create)
             return redirect(url_for('market_page'))
         if form.errors != {}:
             for err_msg in form.errors:
@@ -67,5 +68,4 @@ def login_page():
 @app.route('/logout')
 def logout_page():
     logout_user()
-    flash('You have been logged out!' , category='info')
     return redirect(url_for('home_page'))

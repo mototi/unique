@@ -73,3 +73,48 @@ body{
     color: #fffb00;
     cursor: pointer;
 }
+
+.get_started{
+    background-color: #272727;
+    padding: 4em;
+    text-align: center;
+    margin-top: 10em;
+}
+
+.h-header{
+    margin-top: 0;
+    font-size: 3.5rem;
+}
+
+.app-name{
+    color: #16a931a5;
+}
+
+.app-name:hover{
+    color: #16a931;
+}
+
+#gt_st_btn{
+    outline: none;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.147);
+    background-color: #16a931;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+#gt_st_btn:hover{
+    background-color: #2b5d9e;
+    cursor: pointer;
+}
+
+#wlc_message{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1em;
+}
