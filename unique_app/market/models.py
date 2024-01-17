@@ -13,7 +13,9 @@ class User(db.Model , UserMixin):
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer, nullable=False, default=1000)
+    role = db.Column(db.String(length=20), nullable=False, default='customer')
     items = db.relationship('Item', backref='owner', lazy=True)
+
 
     @property
     def password(self):
@@ -34,3 +36,6 @@ class Item(db.Model):
     description = db.Column(db.String(length=1024), nullable=False, unique=True)
     image = db.Column(db.String(length=1024), nullable=False, unique=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
+
+    

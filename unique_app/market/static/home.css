@@ -4,6 +4,13 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: #212121;
     color: #bdbdbd;
+    padding-top: 4em;
+}
+
+.header_container{
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
 
 .nav_bar{

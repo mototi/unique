@@ -2,8 +2,8 @@ from flask import request
 from market import app , db 
 from flask import render_template , redirect , url_for 
 from market.models import Item , User
-from market.forms import RegisterForm , LoginForm
-from flask_login import login_user , logout_user , login_required 
+from market.forms import ItemForm, RegisterForm , LoginForm
+from flask_login import current_user, login_user , logout_user , login_required 
 
 
 
@@ -17,6 +17,7 @@ def home_page():
 @login_required
 def market_page():
     items =  Item.query.all()
+    print(items)
     return render_template('market.html' , items=items)
 
 
@@ -66,6 +67,35 @@ def login_page():
 
 
 @app.route('/logout')
+@login_required
 def logout_page():
     logout_user()
     return redirect(url_for('home_page'))
+
+
+
+@app.route('/sell' , methods=['GET' , 'POST']) 
+def sell_page():
+    return render_template('sell.html')
+    # form = ItemForm()
+    # errors = []
+    # if request.method == 'POST':
+    #     if form.validate_on_submit():
+
+    #         user_id = current_user.id
+
+    #         item_to_create = Item(name=form.name.data , 
+    #                               price=form.price.data , 
+    #                               barcode=form.barcode.data , 
+    #                               description=form.description.data , 
+    #                               owner_id = current_user)
+    #         db.session.add(item_to_create)
+    #         db.session.commit()
+    #         if form.errors != {}:
+    #             for err_msg in form.errors:
+    #                 if err_msg == 'owner':
+    #                     errors.append("it doesn't seem you have the authority to sell in market!")
+    #                 else:
+    #                     errors.append('Something went wrong! Please try again!')
+    #         alert = f'Congrats! You have added {form.name.data} to the market!'
+    #         return render_template('login.html' , form=form , errors=errors , alert=alert)

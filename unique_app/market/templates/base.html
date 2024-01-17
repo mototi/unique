@@ -20,18 +20,21 @@
                 <p id="logo"><a href={{ url_for('home_page') }}>UNIQUE</a></p>
                 <ul class="routes_list">
                     {% if current_user.is_authenticated %}
-                    <li><a href={{ url_for('market_page') }}>Market</a></li>
+                        <li><a href={{ url_for('market_page') }}>Market</a></li>
+                        <li><a href={{ url_for('sell_page') }}>Sell</a></li>
                     {% endif %}
                 </ul>
             </div>
             {% if current_user.is_authenticated %}
                 <ul class="auth_routes">
-                    <span class="budj">
-                        <i class="fa-solid fa-coins"></i>
-                        <a href="#">{{ current_user.budget }}$</a>
-                    </span>
-                    <li><span>Welcome, <a href="#">{{ current_user.username }}</a></span></li>
-                    <li><a href={{ url_for('logout_page') }}>Log out</a></li>
+                    <li>
+                        <span class="budj">
+                            <i class="fa-solid fa-coins"></i>
+                            <a href="#">{{ current_user.budget }}$</a>
+                        </span>
+                    </li>
+                    <li><span>Welcome, <a id="username" href="#">{{ current_user.username }}</a></span></li>
+                    <li><a id="logout_a" href={{ url_for('logout_page') }}>Log out</a></li>
                 </ul>
             {% else %}
                 <ul class="auth_routes">

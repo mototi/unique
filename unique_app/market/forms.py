@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import FileField, StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, EqualTo , Length , Email , ValidationError
 from market.models import User
 
@@ -27,3 +27,12 @@ class LoginForm (FlaskForm):
     email_address = StringField('Email' , validators=[DataRequired()])
     password = PasswordField('Password' , validators=[DataRequired()])
     submit = SubmitField('Log in')
+
+
+class ItemForm (FlaskForm):
+    name = StringField('Name' , validators=[DataRequired()])
+    price = IntegerField('Price' , validators=[DataRequired()])
+    barcode = StringField('Barcode' , validators=[DataRequired()])
+    description = StringField('Description' , validators=[DataRequired()])
+    image = FileField('Image' , validators=[DataRequired()])
+    submit = SubmitField('Sell Now')
