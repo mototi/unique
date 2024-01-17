@@ -16,6 +16,10 @@ class User(db.Model , UserMixin):
     role = db.Column(db.String(length=20), nullable=False, default='customer')
     items = db.relationship('Item', backref='owner', lazy=True)
 
+    def __init__(self , username , email_address , password):
+        self.username = username
+        self.email_address = email_address
+        self.password = password
 
     @property
     def password(self):
