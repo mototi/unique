@@ -4,8 +4,19 @@ from flask import render_template , redirect , url_for
 from market.models import Item , User
 from market.forms import ItemForm, RegisterForm , LoginForm
 from flask_login import current_user, login_user , logout_user , login_required 
+from functools import wraps
 
 
+def admin_required(func):
+    print('admin_required')
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print('wrapper')
+        if current_user.is_authenticated and current_user.role == 'admin':
+            return func(*args, **kwargs)
+        else:
+            return redirect(url_for('be_admin_page'))
+    return wrapper
 
 
 @app.route('/')
@@ -16,8 +27,7 @@ def home_page():
 @app.route('/market')
 @login_required
 def market_page():
-    items =  Item.query.all()
-    print(items)
+    items = Item.query.all()
     return render_template('market.html' , items=items)
 
 
@@ -73,8 +83,8 @@ def logout_page():
     return redirect(url_for('home_page'))
 
 
-
-@app.route('/sell' , methods=['GET' , 'POST']) 
+@app.route('/sell' , methods=['GET' , 'POST'])
+@admin_required 
 def sell_page():
     return render_template('sell.html')
     # form = ItemForm()
@@ -99,3 +109,7 @@ def sell_page():
     #                     errors.append('Something went wrong! Please try again!')
     #         alert = f'Congrats! You have added {form.name.data} to the market!'
     #         return render_template('login.html' , form=form , errors=errors , alert=alert)
+
+@app.route('/beADMIN' , methods=['GET' , 'POST']) 
+def be_admin_page():
+    return render_template('adminForm.html')
