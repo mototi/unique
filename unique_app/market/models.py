@@ -13,7 +13,7 @@ class User(db.Model , UserMixin):
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer, nullable=False, default=1000)
-    role = db.Column(db.String(length=20), nullable=False, default='customer')
+    role = db.Column(db.String(length=20), nullable=False, default='admin')
     items = db.relationship('Item', backref='owner', lazy=True)
 
     def __init__(self , username , email_address , password):
@@ -46,7 +46,7 @@ class Item(db.Model):
     price = db.Column(db.Integer, nullable=False)
     barcode = db.Column(db.String(length=12), nullable=False, unique=True)
     description = db.Column(db.String(length=1024), nullable=False, unique=True)
-    image = db.Column(db.String(length=1024), nullable=False, unique=True)
+    image = db.Column(db.String(length=1024), nullable=False , unique=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def buy(self, user):

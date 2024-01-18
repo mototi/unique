@@ -11,8 +11,12 @@
     padding: 0.5em;
     border-radius: 0.1em;
     outline: none;
-    border: none;
+    border: 2px solid #2b5d9e00;
     box-shadow: 0px 0px 10px #0000006f;
+}
+
+.form-control:focus{
+    border: 3px solid #2b5d9e;
 }
 
 .rgs-btn{
@@ -35,4 +39,21 @@
 
 .anc_log{
     color: #2b5d9e ;
+}
+
+.image-control{
+    margin-top: 10px;
+}
+
+.des-form{
+    resize: none; 
+}
+
+#alert_selling{
+    text-align: center;
+    color: white;
+    background-color: #df17175c;
+    padding: 1em;
+    position: fixed;
+    width: 100%;
 }

@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import FileField, StringField, PasswordField, SubmitField, IntegerField
+from flask_wtf.file import FileAllowed
+from wtforms import FileField, StringField, PasswordField, SubmitField, IntegerField, TextAreaField 
 from wtforms.validators import DataRequired, EqualTo , Length , Email , ValidationError
-from market.models import User
+from market.models import User , Item
+from market import photos
 
 
 class RegisterForm(FlaskForm):
@@ -30,9 +32,33 @@ class LoginForm (FlaskForm):
 
 
 class ItemForm (FlaskForm):
+
+    def validate_name(self , name_to_check):
+        item = Item.query.filter_by(name=name_to_check.data).first()
+        if item:
+            raise ValidationError('the name of item already exists! change another name')
+        
+    def validate_barcode(self , barcode_to_check):
+        item = Item.query.filter_by(barcode=barcode_to_check.data).first()
+        if item:
+            raise ValidationError('the barcode of item already exists! change another barcode')
+    
+    def validate_image(self , image_to_check):
+        filename = image_to_check.data.filename
+        item = Item.query.filter_by(image=filename).first()
+        if item:
+            raise ValidationError('the image of item already exists! change file name')
+        
+    def validate_description(self , description_to_check):
+        item = Item.query.filter_by(description=description_to_check.data).first()
+        if item:
+            raise ValidationError('the description of item already exists! change another description')
+    
+            
+
     name = StringField('Name' , validators=[DataRequired()])
     price = IntegerField('Price' , validators=[DataRequired()])
     barcode = StringField('Barcode' , validators=[DataRequired()])
-    description = StringField('Description' , validators=[DataRequired()])
-    image = FileField('Image' , validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    image = FileField('Image' , validators=[DataRequired() , FileAllowed(photos , message='Only images are allowed')])
     submit = SubmitField('Sell Now')
