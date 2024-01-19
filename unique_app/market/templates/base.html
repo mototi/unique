@@ -27,12 +27,14 @@
             </div>
             {% if current_user.is_authenticated %}
                 <ul class="auth_routes">
-                    <li>
-                        <span class="budj">
-                            <i class="fa-solid fa-coins"></i>
-                            <a href="#">{{ current_user.budget }}$</a>
-                        </span>
-                    </li>
+                    {% if current_user.role == 'cutomer' %}
+                        <li>
+                            <span class="budj">
+                                <i class="fa-solid fa-coins"></i>
+                                <a href="#">{{ current_user.budget }}$</a>
+                            </span>
+                        </li>
+                    {% endif %}
                     <li><span>Welcome, <a id="username" href="#">{{ current_user.username }}</a></span></li>
                     <li><a id="logout_a" href={{ url_for('logout_page') }}>Log out</a></li>
                 </ul>

@@ -34,6 +34,7 @@ class LoginForm (FlaskForm):
 class ItemForm (FlaskForm):
 
     def validate_name(self , name_to_check):
+        name_to_check.data = name_to_check.data.strip()
         item = Item.query.filter_by(name=name_to_check.data).first()
         if item:
             raise ValidationError('the name of item already exists! change another name')
@@ -50,6 +51,7 @@ class ItemForm (FlaskForm):
             raise ValidationError('the image of item already exists! change file name')
         
     def validate_description(self , description_to_check):
+        description_to_check.data = description_to_check.data.strip()
         item = Item.query.filter_by(description=description_to_check.data).first()
         if item:
             raise ValidationError('the description of item already exists! change another description')
