@@ -53,12 +53,17 @@ class ItemForm (FlaskForm):
         item = Item.query.filter_by(description=description_to_check.data).first()
         if item:
             raise ValidationError('the description of item already exists! change another description')
+        
     
-            
-
     name = StringField('Name' , validators=[DataRequired()])
     price = IntegerField('Price' , validators=[DataRequired()])
     barcode = StringField('Barcode' , validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
     image = FileField('Image' , validators=[DataRequired() , FileAllowed(photos , message='Only images are allowed')])
     submit = SubmitField('Sell Now')
+
+
+    
+class ExtendedItemForm(ItemForm):
+   phone_number = StringField('Phone', validators=[DataRequired()])
+    

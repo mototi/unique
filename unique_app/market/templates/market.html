@@ -18,14 +18,24 @@
                     <p><a href="#">details...</a></p>
                     <div class="crad_control">
                         <span class="item_price">{{ item.price }}$</span>
-                        <button class="buy">Buy</button>
+                        {% if role == 'admin' %}
+                            <button class="delete">Delete</button>
+                        {% else %}
+                            <button class="buy">Buy</button>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
         </div>
 
-        <div class="inventory">
-            <h3>My Items</h3>
-        </div>
+        {% if role == 'customer' %}
+            <div class="inventory">
+                <h3>My Items</h3>
+            </div>
+            {% else %}
+                <div class="inventory">
+                    <h3>pending items</h3>
+                </div>
+        {% endif %}
     </main>
 {% endblock %}

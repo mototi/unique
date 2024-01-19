@@ -13,7 +13,7 @@ class User(db.Model , UserMixin):
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer, nullable=False, default=1000)
-    role = db.Column(db.String(length=20), nullable=False, default='customer')
+    role = db.Column(db.String(length=20), nullable=False, default='cutomer')
     items = db.relationship('Item', backref='owner', lazy=True)
 
     def __init__(self , username , email_address , password):

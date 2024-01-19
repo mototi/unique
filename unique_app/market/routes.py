@@ -3,7 +3,7 @@ from flask import request
 from market import app , db , photos
 from flask import render_template , redirect , url_for 
 from market.models import Item , User
-from market.forms import ItemForm, RegisterForm , LoginForm
+from market.forms import ExtendedItemForm, ItemForm, RegisterForm , LoginForm
 from flask_login import current_user, login_user , logout_user , login_required 
 from functools import wraps
 
@@ -14,7 +14,7 @@ def admin_required(func):
         if current_user.is_authenticated and current_user.role == 'admin':
             return func(*args, **kwargs)
         else:
-            return redirect(url_for('be_admin_page'))
+            return redirect(url_for('sell_as_customer'))
     return wrapper
 
 
@@ -129,6 +129,44 @@ def sell_page():
 
     return render_template('sell.html' , form=form , errors=errors , alert=alert)
 
-@app.route('/beADMIN' , methods=['GET' , 'POST']) 
-def be_admin_page():
-    return render_template('adminForm.html')
+@app.route('/sell/customer' , methods=['GET' , 'POST']) 
+def sell_as_customer():
+    form = ExtendedItemForm()
+    errors = []
+    alert = None
+
+    if request.method == 'POST':
+        form.barcode.data = random.randint(10000000 , 99999999)
+        if form.validate_on_submit():
+
+            user_request = {
+                'user_id': current_user.id,
+                'name': form.name.data,
+                'price': form.price.data,
+                'barcode': form.barcode.data,
+                'description': form.description.data,
+                'image': form.image.data.filename,
+            }
+
+            print(user_request)
+
+            photos.save(form.image.data)
+
+            alert = f'we will reach you as soon as possible!'
+       
+        if form.errors != {}:
+            for err_msg in form.errors:
+                if err_msg == 'name':
+                    errors.append('Name already exists!')
+                elif err_msg == 'price':
+                    errors.append('Price must be a number!')
+                elif err_msg == 'barcode':
+                    errors.append('something wrong please try again!')
+                elif err_msg == 'description':
+                    errors.append('Description already exists try to change it!')
+                elif err_msg == 'phone_number':
+                    errors.append('the phone number is required for customer')
+                elif err_msg == 'image':
+                    errors.append('you are trying to uplaod NON_IMAGE file, change it, and try again!')
+
+    return render_template('sell_customer.html' , form=form , errors=errors , alert=alert)

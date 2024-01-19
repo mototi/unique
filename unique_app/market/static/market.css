@@ -85,7 +85,6 @@ main{
 .crad_control button{
     outline: none;
     border: none;
-    background-color: #16a931;
     color: #272727;
     box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.18);
     padding: 5px 20px;
@@ -94,9 +93,24 @@ main{
     font-weight: bold;
 }
 
-.crad_control button:hover{
+.buy{
+    background-color: #16a931;
+}
+
+.delete{
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+.buy:hover{
     background-color: #272727;
     color: #16a931;
+    box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.278);
+}
+
+.delete:hover{
+    background-color: #ffffff;
+    color: #ff0000;
     box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.278);
 }
 

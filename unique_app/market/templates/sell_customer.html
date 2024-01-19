@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+{% block title %}
+    Sell | Page
+{% endblock %}
+
+
+{% block content %}
+    {% if alert %}
+        <p id="alert_selling">
+            {{ alert }}
+        </p>
+    {% endif %}
+    <div class="form_container">
+        <h1>Sell an Item</h1>
+        <p>Please fill this form to create an item.</p>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            
+            {{ form.name( class="form-control" , placeholder = "Enter Product Name") }}
+            {{ form.price( class="form-control" , placeholder = "Enter The Price") }}
+            {{ form.description( class="form-control des-form" , rows=4 , placeholder = "Fill the discription") }}
+            {{ form.phone_number( class="form-control" , placeholder = "Enter a valid WhatsApp phone number") }}
+            {{ form.image(class="image-control") }}
+            <br>
+            <br>
+            {{ form.submit( class="rgs-btn" ) }}
+        </form>
+        <div class="warning">
+            {% for message in errors %}
+                <p class="error">* {{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        let alert = document.getElementById('alert_selling')
+        if(alert){
+            setTimeout(function(){
+            document.getElementById('alert_selling').style.display = 'none';
+        }, 3000);
+        }
+    </script>
+{% endblock %}
+</body>
+</html>
