@@ -1,23 +1,9 @@
 [
   {
-    "user_id": "current_user.id",
-    "name": "form.name.data",
-    "price": "form.price.data",
-    "description": "form.description.data",
-    "image": "form.image.data.filename"
-  },
-  {
-    "user_id": "current_user.id",
-    "name": "form.name.data",
-    "price": "form.price.data",
-    "description": "form.description.data",
-    "image": "form.image.data.filename"
-  },
-  {
     "user_id": 3,
-    "name": "aaaaaaaaaaaaa",
-    "price": 444444444,
-    "description": "aaaaaaaaaaaaaaa",
-    "image": "6.jpg"
+    "name": "test product",
+    "price": 2000,
+    "description": "15",
+    "image": "15.jpg"
   }
 ]
