@@ -57,7 +57,7 @@ class ItemForm (FlaskForm):
             raise ValidationError('the description of item already exists! change another description')
         
     
-    name = StringField('Name' , validators=[DataRequired()])
+    name = StringField('Name' , validators=[DataRequired() , Length(min=2 , max=30)])
     price = IntegerField('Price' , validators=[DataRequired()])
     barcode = StringField('Barcode' , validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])

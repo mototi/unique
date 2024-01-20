@@ -39,10 +39,9 @@
                     <h3>pending items</h3>
                     {% for pen in pendings %}
                         <div class="pending-item">
-                            <p>{{ pen.name }}</p>
-                            <p>{{ pen.price }}$</p>
-                            <button class="accept">Accept</button>
-                            <button class="reject">Reject</button>
+                            <p><img src="../static/userresources/{{pen.image}}"></p>
+                            <p class="text-limited">{{ pen.name }}</p>
+                            <button class="show-btn-container"><a class="show-btn-a" href={{ url_for('customer_item_page' , barcode=pen.barcode) }}>Show</a></button>
                         </div>
                     {% endfor %}
                 </div>

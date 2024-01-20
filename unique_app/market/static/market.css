@@ -36,10 +36,33 @@ main{
 .inventory{
     background-color: #272727;
     padding: 20px;
-    min-height: 10em;
-    max-height: 30em; 
+    min-height: 20em;
+    height: fit-content; 
     width: 20em;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.278);
+}
+
+.show-btn-a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.show-btn-container{
+    padding:.5em 1em;
+    background-color:  #16a931;
+    outline: none;
+    border: none;
+    border-radius: 1em;
+}
+
+.show-btn-container:hover{
+    background-color: #ffffff;
+    box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.278);
+}
+
+.show-btn-container:hover .show-btn-a{
+    font-weight: bold;
+    color: #272727;
 }
 
 .card img{
@@ -118,4 +141,24 @@ main{
     text-align: center;
     border-bottom: 2px solid #ffffff;
     padding-bottom: 1em;
+}
+
+.pending-item{
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ffffff83;
+}
+
+.pending-item img{
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+}
+
+.text-limited{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
 }

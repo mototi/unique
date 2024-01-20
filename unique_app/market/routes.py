@@ -30,6 +30,7 @@ def market_page():
     items = Item.query.all()
     role = "admin"
     user_items = None
+    pendings = None
     # get all items that has the same owner_id as the current_user.id if the current_user is not admin
     if current_user.role != 'admin':
         user_items = Item.query.filter_by(owner_id=current_user.id)
@@ -95,6 +96,7 @@ def logout_page():
 
 
 @app.route('/sell' , methods=['GET' , 'POST'])
+@login_required
 @admin_required 
 def sell_page():
     form = ItemForm()
@@ -125,7 +127,8 @@ def sell_page():
 
     return render_template('sell.html' , form=form , errors=errors , alert=alert)
 
-@app.route('/sell/customer' , methods=['GET' , 'POST']) 
+@app.route('/sell/customer' , methods=['GET' , 'POST'])
+@login_required 
 def sell_as_customer():
     form = ExtendedItemForm()
     errors = []
@@ -136,11 +139,14 @@ def sell_as_customer():
         if form.validate_on_submit():
 
             user_request = {
+                'username': current_user.username,
                 'user_id': current_user.id,
                 'name': form.name.data,
                 'price': form.price.data,
                 'description': form.description.data,
                 'image': form.image.data.filename,
+                'barcode': form.barcode.data,
+                'phone_number': form.phone_number.data,
             }
             
             file = open('./market/customer_requests.json', 'r')
@@ -164,3 +170,23 @@ def sell_as_customer():
 
 
     return render_template('sell_customer.html' , form=form , errors=errors , alert=alert)
+
+
+#show customer item by id
+@app.route('/customer-item/<int:barcode>' , methods=['GET' , 'POST'])
+@login_required
+@admin_required
+def customer_item_page(barcode):
+    item = None
+    if barcode:
+            file = open('./market/customer_requests.json', 'r')
+            content = json.load(file)
+            file.close()
+            for i in content:
+                if i['barcode'] == barcode:
+                    item = i
+                    break
+            if item == None:
+                return render_template('notfount.html')
+            user = User.query.filter_by(id=item['user_id']).first()
+    return render_template('customer_item.html' , item=item , user=user)

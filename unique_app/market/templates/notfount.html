@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Not Found
+{% endblock %}
+
+{% block head %}
+    <style>
+        .not-found {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .not-found-h {
+            font-size: 5em;
+        }
+
+        .not-found-p {
+            font-size: 2em;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="not-found">
+        <h1 class="not-found-h">Item Not Found</h1>
+        <p class="not-found-p">Sorry, but the page you were trying to view does not exist.</p>
+    </div>
+{% endblock %}

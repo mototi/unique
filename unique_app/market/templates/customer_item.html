@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Item
+{% endblock %}
+
+{% block head %}
+    <style>
+        .image-customer{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-customer-wrapper{
+            width: 450px;
+            height: 450px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            max-width: 30%;
+        }
+        .customer_product_wrapper{
+            display: flex;
+            gap: 2em;
+            padding: 2em;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 2em;
+        }
+        .span_info{
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .info_product_customer{
+            height: 100%;
+            max-height: 100%;
+            max-width: 70%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% if item %}
+        <section class="customer_product_wrapper">
+            <div class="image-customer-wrapper">
+                <img class="image-customer" src="../static/userresources/{{item.image}}" alt="item_image">
+            </div>
+            <div class="info_product_customer">
+                <p class="info_product_customer-p"><span class="span_info">Customer Name</span> : {{ item.username }}</p>
+                <p class="info_product_customer-p"><span class="span_info">Item Name</span> : {{ item.name }}</p>
+                <p class="info_product_customer-p"><span class="span_info">Description</span> : {{ item.description }}</p>
+                <p class="info_product_customer-p"><span class="span_info">Product Price</span> : {{ item.price }}</p>
+                <p class="info_product_customer-p"><span class="span_info">Contact</span> : {{ item.phone_number }}</p>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
