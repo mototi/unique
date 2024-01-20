@@ -37,6 +37,14 @@
             {% else %}
                 <div class="inventory">
                     <h3>pending items</h3>
+                    {% for pen in pendings %}
+                        <div class="pending-item">
+                            <p>{{ pen.name }}</p>
+                            <p>{{ pen.price }}$</p>
+                            <button class="accept">Accept</button>
+                            <button class="reject">Reject</button>
+                        </div>
+                    {% endfor %}
                 </div>
         {% endif %}
     </main>

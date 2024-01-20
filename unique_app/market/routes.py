@@ -33,9 +33,13 @@ def market_page():
     # get all items that has the same owner_id as the current_user.id if the current_user is not admin
     if current_user.role != 'admin':
         user_items = Item.query.filter_by(owner_id=current_user.id)
-        role = "customer"   
+        role = "customer" 
+    else:
+        file = open('./market/customer_requests.json', 'r')
+        pendings = json.load(file)
+        file.close()  
 
-    return render_template('market.html' , items=items , user_items=user_items , role=role)
+    return render_template('market.html' , items=items , user_items=user_items , role=role , pendings=pendings)
 
 
 @app.route('/register' , methods=['GET' , 'POST']) 
