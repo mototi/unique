@@ -317,7 +317,7 @@ def change_pendding(barcode):
     return redirect(url_for('market_page'))
 
 
-@app.route('/user/<int:user_id>' , methods=['GET' , 'POST'])
+@app.route('/user/<int:user_id>' , methods=['GET'])
 @login_required
 def user_info(user_id):
     user = None
