@@ -8,13 +8,14 @@ from market.forms import EditItemForm, ExtendedItemForm, ItemForm, RegisterForm 
 from flask_login import current_user, login_user , logout_user , login_required 
 from functools import wraps
 
-
+#middleware to check if the user is admin or not
 def admin_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if current_user.is_authenticated and current_user.role == 'admin':
             return func(*args, **kwargs)
         else:
+            #if the user is not admin redirect him to sell_as_customer page (different form for customer)
             return redirect(url_for('sell_as_customer'))
     return wrapper
 
