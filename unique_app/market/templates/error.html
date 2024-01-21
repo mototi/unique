@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    ERROR
+{% endblock %}
+
+{% block head %}
+    <style>
+        .not-found {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .not-found-h {
+            font-size: 5em;
+        }
+
+        .not-found-p {
+            font-size: 2em;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="not-found">
+        <h1 class="not-found-h">Something went wrong</h1>
+        <p class="not-found-p">Sorry, it seems like something went wrong please try again later or contact us via mail</p>
+        <p class="not-found-p">admin_info@unique.com</p>
+    </div>
+{% endblock %}

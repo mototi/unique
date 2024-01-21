@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    UNIQUE | User
+{% endblock %}
+{% block head %}
+
+    <style>
+        .warning{
+            text-align: center;
+            color: rosybrown;
+        }
+        .warning p{
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="warning message">
+        <h1>Note : the app are not responsible for items displayed in fans section</h1>
+        <p>don't transfare money to unverified users</p>
+        <p>you may need to examine the physical item before transferring any dollar</p>
+    </div>
+    {% if user %}
+        <h2 class="user_data" >Username : {{user.username}}</h2>
+        <h2 class="user_data" >Email : {{user.username}}</h2>
+        
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Recharge
+{% endblock %}
+
+{% block head %}
+    <style>
+        .not-found {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .not-found-h {
+            font-size: 5em;
+        }
+
+        .not-found-p {
+            font-size: 2em;
+        }
+
+        .demo_input {
+            display: block;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            box-sizing: border-box;
+            width: 50em;
+        }
+        .demo_buttom{
+            background-color: #16a931;
+            color: white;
+        }
+        .demo_buttom:hover{
+            background-color: #2b5d9e;
+            cursor: pointer;        
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="not-found">
+        <h1 class="not-found-h">Recharge Now</h1>
+        <p class="not-found-p">It seems you ran out of coins recharge now</p>
+        <input type="number" name="coins" id="coins" placeholder="Enter Coins" class="demo_input">
+        <input type="number" name="craedits" id="credits" placeholder="Enter Credits" class="demo_input">
+        <button type="submit" class="demo_input demo_buttom">Recharge</button>
+    </div>
+{% endblock %}

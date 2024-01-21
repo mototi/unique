@@ -55,7 +55,10 @@ class ItemForm (FlaskForm):
         item = Item.query.filter_by(description=description_to_check.data).first()
         if item:
             raise ValidationError('the description of item already exists! change another description')
-        
+
+    def validate_price(self , price_to_check):
+        if price_to_check.data < 999:
+            raise ValidationError('price must be greater than or equals 1000')    
     
     name = StringField('Name' , validators=[DataRequired() , Length(min=2 , max=30)])
     price = IntegerField('Price' , validators=[DataRequired()])
@@ -68,4 +71,13 @@ class ItemForm (FlaskForm):
     
 class ExtendedItemForm(ItemForm):
    phone_number = StringField('Phone', validators=[DataRequired()])
+
+
+class EditItemForm(FlaskForm):
+    price = IntegerField('Price' , validators=[DataRequired()])
+    submit = SubmitField('Edit Now')
+
+    def validate_price(self , price_to_check):
+        if price_to_check.data < 999:
+            raise ValidationError('price must be greater than or equals 1000')
     

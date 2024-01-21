@@ -26,6 +26,14 @@ main{
     height: fit-content;
 }
 
+.fans_cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    height: fit-content;
+    padding: 1em;
+}
+
 .card{
     background-color: #272727;
     padding: 20px;
@@ -120,6 +128,16 @@ main{
     background-color: #16a931;
 }
 
+.buy a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.buy:hover a{
+    color: #16a931;
+    text-decoration: none;
+}
+
 .delete{
     background-color: #ff0000;
     color: #ffffff;
@@ -171,4 +189,15 @@ main{
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
+}
+
+
+.fan_section_h{
+    margin-left: 1em;
+    padding-top: 2em;
+    padding-bottom: .5em;
+    border-bottom: 2px solid #ffffff83;
+    width: 97%;
+    font-size: 1.5rem;
+
 }

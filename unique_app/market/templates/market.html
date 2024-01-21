@@ -25,7 +25,9 @@
                                 <a id={{ item.barcode }} href={{ url_for('delete_item' , barcode=item.barcode) }}>Delete</a>
                             </button>
                         {% else %}
-                            <button class="buy">Buy</button>
+                            <button class="buy" onclick="document.getElementById('{{ item.barcode }}').click();">
+                                <a id={{ item.barcode }} href={{ url_for('item_sold' , barcode=item.barcode) }}>Buy</a>
+                            </button>
                         {% endif %}
                     </div>
                 </div>
@@ -35,6 +37,22 @@
         {% if role == 'customer' %}
             <div class="inventory">
                 <h3>My Items</h3>
+                {% for i in user_items %}
+                    <div class="pending-item">
+                        <p><img src="../static/resources/{{i.image}}"></p>
+                        <p class="text-limited">{{ i.name }}</p>
+                        <p class="text-limited">{{ i.price }}$</p>
+                        <button class="show-btn-container" onclick="document.getElementById('{{ i.barcode }}').click();">
+                            <a id={{ i.barcode }} class="show-btn-a" href={{ url_for('item_bought' , barcode=i.barcode) }}>Sell</a>
+                        </button>
+                        <button class="show-btn-container" onclick="document.getElementById('{{ i.name }}').click();">
+                            <a id={{ i.name }} class="show-btn-a" href={{ url_for('edit_item' , barcode=i.barcode) }}>Edit</a>
+                        </button>
+                    </div>
+                    <!-- <button onclick="document.getElementById('{{ i.barcode }}').click();">
+                        <a id={{ i.barcode }} class="show-btn-a" href={{ url_for('item_page' , barcode=i.barcode) }}>Show</a>
+                    </button> -->
+                {% endfor %}
             </div>
             {% else %}
                 <div class="inventory">
@@ -51,4 +69,33 @@
                 </div>
         {% endif %}
     </main>
+
+    <section>
+        <h1 class="fan_section_h"><span class="app_name">Fans</span> Items</h1>
+
+        <div class="fans_cards">
+            {% for item in approved_items %}
+                <div class="card">
+                    <div class="image_container">
+                        <img src="../static/resources/{{item.image}}" alt="item_image">
+                    </div>
+                    <p class="item_name">{{ item.name }}</p>
+                    <p><a href={{ url_for('item_page' , barcode=item.barcode) }}>details...</a></p>
+                    <div class="crad_control">
+                        <span class="item_price">{{ item.price }}$</span>
+                        {% if role == 'admin' %}
+                            <button class="delete" onclick="document.getElementById('{{ item.barcode }}').click();">
+                                <a id={{ item.barcode }} href={{ url_for('delete_item' , barcode=item.barcode) }}>Delete</a>
+                            </button>
+                        {% else %}
+                            <button class="buy" onclick="document.getElementById('{{ item.barcode }}').click();">
+                                <a id={{ item.barcode }} href={{ url_for('user_info' , user_id=item.user_id) }}>Contact</a>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
 {% endblock %}

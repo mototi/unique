@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit | Item
+{% endblock %}
+
+{% block content %}
+    <div class="form_container">
+        <h1>Edit Price</h1>
+        <form method="POST">
+
+            {{ form.hidden_tag() }}
+
+            {{ form.price( class="form-control" , placeholder = "Enter Price") }}
+            <br>
+            <br>
+            {{ form.submit( class="rgs-btn" ) }}
+        </form>
+        <div class="warning">
+            {% for message in errors %}
+                <p class="error">* {{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

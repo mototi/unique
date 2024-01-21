@@ -12,7 +12,7 @@ class User(db.Model , UserMixin):
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
-    budget = db.Column(db.Integer, nullable=False, default=1000)
+    budget = db.Column(db.Integer, nullable=False, default=3000)
     role = db.Column(db.String(length=20), nullable=False, default='customer')
     items = db.relationship('Item', backref='owner', lazy=True)
 
@@ -48,16 +48,21 @@ class Item(db.Model):
     description = db.Column(db.String(length=1024), nullable=False, unique=True)
     image = db.Column(db.String(length=1024), nullable=False , unique=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    market = db.Column(db.Boolean, default=True)
 
     def buy(self, user):
-        self.owner = user
+        item_owner = self.owner
+        self.owner_id = user.id
+        self.market = False
         user.budget -= self.price
+        item_owner.budget += self.price
         db.session.commit()
 
     def sell(self, user):
-        self.owner = None
-        user.budget += self.price
+        self.owner_id = user.id
+        self.market = True
+        user.budget -= 10        
         db.session.commit()
-    
+
 
     

@@ -35,6 +35,17 @@
             text-overflow: ellipsis;
             overflow: hidden;
         }
+
+        .add-fans{
+            margin: 1em 1em 1em 48%;
+            padding: 1em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
     </style>
 {% endblock %}
 
@@ -52,5 +63,9 @@
                 <p class="info_product_customer-p"><span class="span_info">Contact</span> : {{ item.phone_number }}</p>
             </div>
         </section>
+        
+        <button class="buy add-fans" onclick="document.getElementById('{{ item.barcode }}').click();">
+            <a id={{ item.barcode }} href={{ url_for('change_pendding' , barcode=item.barcode) }}>Add To Fans Section</a>
+        </button>
     {% endif %}
 {% endblock %}
