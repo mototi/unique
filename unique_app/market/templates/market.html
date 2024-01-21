@@ -17,11 +17,13 @@
                         <img src="../static/resources/{{item.image}}" alt="item_image">
                     </div>
                     <p class="item_name">{{ item.name }}</p>
-                    <p><a href="#">details...</a></p>
+                    <p><a href={{ url_for('item_page' , barcode=item.barcode) }}>details...</a></p>
                     <div class="crad_control">
                         <span class="item_price">{{ item.price }}$</span>
                         {% if role == 'admin' %}
-                            <button class="delete">Delete</button>
+                            <button class="delete" onclick="document.getElementById('{{ item.barcode }}').click();">
+                                <a id={{ item.barcode }} href={{ url_for('delete_item' , barcode=item.barcode) }}>Delete</a>
+                            </button>
                         {% else %}
                             <button class="buy">Buy</button>
                         {% endif %}
@@ -41,7 +43,9 @@
                         <div class="pending-item">
                             <p><img src="../static/userresources/{{pen.image}}"></p>
                             <p class="text-limited">{{ pen.name }}</p>
-                            <button class="show-btn-container"><a class="show-btn-a" href={{ url_for('customer_item_page' , barcode=pen.barcode) }}>Show</a></button>
+                            <button class="show-btn-container" onclick="document.getElementById('{{ pen.barcode }}').click();">
+                                <a id={{ pen.barcode }} class="show-btn-a" href={{ url_for('customer_item_page' , barcode=pen.barcode) }}>Show</a>
+                            </button>
                         </div>
                     {% endfor %}
                 </div>

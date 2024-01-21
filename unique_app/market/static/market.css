@@ -58,10 +58,10 @@ main{
 .show-btn-container:hover{
     background-color: #ffffff;
     box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.278);
+    cursor: pointer;
 }
 
 .show-btn-container:hover .show-btn-a{
-    font-weight: bold;
     color: #272727;
 }
 
@@ -123,6 +123,16 @@ main{
 .delete{
     background-color: #ff0000;
     color: #ffffff;
+}
+
+.delete a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.delete:hover a{
+    color: red;
+    text-decoration: none;
 }
 
 .buy:hover{

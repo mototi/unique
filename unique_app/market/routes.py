@@ -190,3 +190,28 @@ def customer_item_page(barcode):
                 return render_template('notfount.html')
             user = User.query.filter_by(id=item['user_id']).first()
     return render_template('customer_item.html' , item=item , user=user)
+
+@app.route('/item/<int:barcode>' , methods=['GET'])
+@login_required
+@admin_required
+def item_page(barcode):
+    item = None
+    if barcode:
+            item = Item.query.filter_by(barcode=barcode).first()
+            if item == None:
+                return render_template('notfount.html')
+    return render_template('item.html' , item=item)
+
+@app.route('/item-deleted/<int:barcode>' , methods=['GET' , 'POST'])
+@login_required
+@admin_required
+def delete_item(barcode):
+    item = None
+    if barcode:
+            #delete item from database
+            item = Item.query.filter_by(barcode=barcode).first()
+            db.session.delete(item)
+            db.session.commit()
+            if item == None:
+                return render_template('notfount.html')
+    return redirect(url_for('market_page'))
