@@ -62,21 +62,15 @@ def register_page():
         if form.validate_on_submit():
             user_to_create = User(username=form.username.data , 
                                   email_address=form.email_address.data , 
-                                  password=form.password1.data)
+                                  password=form.password1.data,
+                                  phone=form.phone.data)
             db.session.add(user_to_create)
             db.session.commit()
             login_user(user_to_create)
             return redirect(url_for('market_page'))
         if form.errors != {}:
             for err_msg in form.errors:
-                if err_msg == 'username':
-                    errors.append('Username already exists!')
-                elif err_msg == 'email_address':
-                    errors.append('Email already exists!')
-                elif err_msg == 'password1':
-                    errors.append('Password must be at least 6 characters!')
-                elif err_msg == 'password2':
-                    errors.append('Passwords must match!')
+                errors.append(form.errors[err_msg][0])
 
     return render_template('register.html' , form=form , errors=errors)
 

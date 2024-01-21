@@ -38,7 +38,7 @@
                             </span>
                         </li>
                     {% endif %}
-                    <li><span>Welcome, <a id="username" href="#">{{ current_user.username }}</a></span></li>
+                    <li><span>Welcome, <a id="username" href={{ url_for('user_info' , user_id = current_user.id) }}>{{ current_user.username }}</a></span></li>
                     <li><a id="logout_a" href={{ url_for('logout_page') }}>Log out</a></li>
                 </ul>
             {% else %}
