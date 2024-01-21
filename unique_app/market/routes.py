@@ -345,3 +345,20 @@ def delete_pendding(barcode):
             if item == None:
                 return render_template('notfount.html')
     return redirect(url_for('market_page'))
+
+#route to show items details from json file
+@app.route('/item-fan-section/<int:barcode>' , methods=['GET'])
+@login_required
+def item_fan_details(barcode):
+    item = None
+    if barcode:
+            file = open('./market/customer_requests.json', 'r')
+            content = json.load(file)
+            file.close()
+            for i in content:
+                if i['barcode'] == barcode:
+                    item = i
+                    break
+            if item == None:
+                return render_template('notfount.html')
+    return render_template('customer_item_details.html' , item=item)

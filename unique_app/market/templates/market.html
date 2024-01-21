@@ -80,7 +80,7 @@
                         <img src="../static/resources/{{item.image}}" alt="item_image">
                     </div>
                     <p class="item_name">{{ item.name }}</p>
-                    <p><a href={{ url_for('item_page' , barcode=item.barcode) }}>details...</a></p>
+                    <p><a href={{ url_for('item_fan_details' , barcode=item.barcode) }}>details...</a></p>
                     <div class="crad_control">
                         <span class="item_price">{{ item.price }}$</span>
                         {% if role == 'admin' %}
