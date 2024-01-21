@@ -44,8 +44,10 @@
     <div class="not-found">
         <h1 class="not-found-h">Recharge Now</h1>
         <p class="not-found-p">It seems you ran out of coins recharge now</p>
-        <input type="number" name="coins" id="coins" placeholder="Enter Coins" class="demo_input">
-        <input type="number" name="craedits" id="credits" placeholder="Enter Credits" class="demo_input">
-        <button type="submit" class="demo_input demo_buttom">Recharge</button>
+        <form action={{ url_for('add_coins') }} method="POST">
+            <input type="number" name="coins" id="coins" placeholder="Enter Coins" class="demo_input">
+            <input type="number" name="craedits" id="credits" placeholder="Enter Credits" class="demo_input">
+            <input type="submit" class="demo_input demo_buttom" value="Recharge">
+        </form>
     </div>
 {% endblock %}

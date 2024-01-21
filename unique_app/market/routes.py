@@ -362,3 +362,12 @@ def item_fan_details(barcode):
             if item == None:
                 return render_template('notfount.html')
     return render_template('customer_item_details.html' , item=item)
+
+@app.route('/add-coins' , methods=['POST'])
+@login_required
+def add_coins():
+    amount = request.form.get('coins')
+    if amount:
+        current_user.budget += int(amount)
+        db.session.commit()
+    return redirect(url_for('recharge_page'))
