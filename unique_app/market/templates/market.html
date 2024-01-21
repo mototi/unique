@@ -85,7 +85,7 @@
                         <span class="item_price">{{ item.price }}$</span>
                         {% if role == 'admin' %}
                             <button class="delete" onclick="document.getElementById('{{ item.barcode }}').click();">
-                                <a id={{ item.barcode }} href={{ url_for('delete_item' , barcode=item.barcode) }}>Delete</a>
+                                <a id={{ item.barcode }} href={{ url_for('delete_pendding' , barcode=item.barcode) }}>Delete</a>
                             </button>
                         {% else %}
                             <button class="buy" onclick="document.getElementById('{{ item.barcode }}').click();">

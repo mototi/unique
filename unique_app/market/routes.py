@@ -326,3 +326,28 @@ def user_info(user_id):
             if user == None:
                 return render_template('notfount.html')
     return render_template('user.html' , user=user)
+
+#delete from json file with barcode
+@app.route('/delete-pendding/<int:barcode>' , methods=['GET' , 'POST'])
+@login_required
+@admin_required
+def delete_pendding(barcode):
+    item = None
+    if barcode:
+            file = open('./market/customer_requests.json', 'r')
+            content = json.load(file)
+            file.close()
+
+            #if the barcode found delete it and rewite the file
+            for i in content:
+                if i['barcode'] == barcode:
+                    item = i
+                    content.remove(i)
+                    file = open('./market/customer_requests.json', 'w')
+                    json.dump(content, file)
+                    file.close()
+                    break
+
+            if item == None:
+                return render_template('notfount.html')
+    return redirect(url_for('market_page'))
