@@ -13,10 +13,19 @@
         .warning p{
             color: red;
         }
+        .user_image{
+            border-radius: 50%;
+
+        }
+        .profile_container{
+            text-align: center;
+            margin-top: 2em;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
+<div class="profile_container">
     <div class="warning message">
         {% if warning1 %}
             <h1>{{ warning1 }}</h1>
@@ -29,9 +38,10 @@
         {% endif %}
     </div>
     {% if user %}
-        <img src="" alt="user image" class="user_image">
+        <img src="../static/avtar.jpg" alt="user image" class="user_image">
         <h2 class="user_data" >Username : {{user.username}}</h2>
         <h2 class="user_data" >Email : {{user.email_address}}</h2>
         <h2 class="user_data" >Phone : {{user.phone}}</h2>
     {% endif %}
+</div>
 {% endblock %}
