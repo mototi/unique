@@ -13,8 +13,8 @@ class User(db.Model , UserMixin):
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
-    budget = db.Column(db.Integer, nullable=False, default=3000)
-    role = db.Column(db.String(length=20), nullable=False, default='admin')
+    budget = db.Column(db.Integer, nullable=False, default=999)
+    role = db.Column(db.String(length=20), nullable=False, default='customer')
     phone = db.Column(db.String(length=20), nullable=False, unique=True)    
     items = db.relationship('Item', backref='owner', lazy=True)
 

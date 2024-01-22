@@ -26,6 +26,12 @@ class RegisterForm(FlaskForm):
         email = User.query.filter_by(email_address=email_address_to_check.data).first()
         if email:
             raise ValidationError('Email already exists!')
+    
+    #check if phone already exists in DB and raise error if it exists
+    def validate_phone(self , phone_to_check):
+        phone = User.query.filter_by(phone=phone_to_check.data).first()
+        if phone:
+            raise ValidationError('Phone already matches with existing user!')
 
     username = StringField('Username', validators=[DataRequired() , Length(min=2 , max=30)])
     email_address = StringField('Email', validators=[DataRequired() , Email()])
