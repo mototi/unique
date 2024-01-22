@@ -70,4 +70,12 @@ owns physically not in the inventory and the details of the product and the cust
 ## Future work
 - implement payment method to allow customers to add coins and add their cards
 - in profile allow user image customized for each profile
-- in profile page displays user's inventory and previous purchases and rate section
+- in profile page displays the user's inventory and previous purchases and the rate section
+- allow users to have Auctions over items in the fans section (socket io)
+  
+## to test
+- Admin: admin@gmail.com 
+- customer1: assem@gmail.com 
+- customer2: john@gmail.com
+- customer: mohamed@gmail.com
+- passwords for all users: 123456
