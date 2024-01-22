@@ -1,4 +1,4 @@
-# UNIQUE web application (e-coomerce NFT style)
+# UNIQUE web application (e-commerce NFT style)
 UNIQUE is an e-commerce site that works with NFT style but with unique physical objects.
 the app has two sections one for products that are posted by admin and this works as NFTs means that it only has a quantity of 1 and any customer who buys this item now is no longer in the market and it's in 
 customer's inventory ready to resell it later with different price (greater than  or equals 1000$).
