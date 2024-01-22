@@ -68,6 +68,7 @@ owns physically not in the inventory and the details of the product and the cust
 - in the directory of the project itself run this command in cmd: `py run.py`
 
 ## Future work
+- Enable customers to place orders for their physical items in inventory to be delivered to their homes.
 - implement payment method to allow customers to add coins and add their cards
 - in profile allow user image customized for each profile
 - in profile page displays the user's inventory and previous purchases and the rate section
